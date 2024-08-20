@@ -173,6 +173,43 @@ describe('CaesarCipherDemo', () => {
       expect(result).toMatch(expected);
     });
 
+    it('should return LXXVIII for 78', () => {
+      // Given
+      const value: number = 78;
+
+      // When
+      const result = numerals.toNumerals(value);
+      const expected = 'LXXVIII';
+
+      // Then
+      expect(result).toMatch(expected);
+    });
+
+    it('should return CDLXXXIV for 484', () => {
+      // Given
+      const value: number = 484;
+
+      // When
+      const result = numerals.toNumerals(value);
+      const expected = 'CDLXXXIV';
+
+      // Then
+      expect(result).toMatch(expected);
+    });
+
+    it('should return DCLXXVIII for 678', () => {
+      // Given
+      const value: number = 678;
+
+      // When
+      const result = numerals.toNumerals(value);
+      const expected = 'DCLXXVIII';
+
+      // Then
+      expect(result).toMatch(expected);
+    });
+
+
     it('should return CMXCIX for 999', () => {
       // Given
       const value: number = 999;
@@ -185,17 +222,64 @@ describe('CaesarCipherDemo', () => {
       expect(result).toMatch(expected);
     });
 
-    xit('should raise an error when given value is greater than 999', () => {
+    it('should return MI for 1001', () => {
       // Given
-      const value: number = 1000;
+      const value: number = 1001;
 
       // When
-      const wrapper = () => {
-        numerals.toNumerals(value)
-      };
+      const result = numerals.toNumerals(value);
+      const expected = 'MI';
 
       // Then
-      expect(wrapper).toThrow('Input must be less than 1000');
+      expect(result).toMatch(expected);
+    });
+
+    it('should return MI for 1768', () => {
+      // Given
+      const value: number = 1768;
+
+      // When
+      const result = numerals.toNumerals(value);
+      const expected = 'MDCCLXVIII';
+
+      // Then
+      expect(result).toMatch(expected);
+    });
+
+    it('should return MCMXCIX for 1999', () => {
+      // Given
+      const value: number = 1999;
+
+      // When
+      const result = numerals.toNumerals(value);
+      const expected = 'MCMXCIX';
+
+      // Then
+      expect(result).toMatch(expected);
+    });
+
+    it('should return MMCMIX for 2909', () => {
+      // Given
+      const value: number = 2909;
+
+      // When
+      const result = numerals.toNumerals(value);
+      const expected = 'MMCMIX';
+
+      // Then
+      expect(result).toMatch(expected);
+    });
+
+    it('should return MMMDCCLXVIII for 3768', () => {
+      // Given
+      const value: number = 3768;
+
+      // When
+      const result = numerals.toNumerals(value);
+      const expected = 'MMMDCCLXVIII';
+
+      // Then
+      expect(result).toMatch(expected);
     });
   });
 });
