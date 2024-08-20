@@ -22,11 +22,11 @@ export class RomanNumeralConverterDemo implements RomanNumeralConverter {
 
   private numbersOrderedHighToLow = ['1000', '900', '500', '400', '100', '90', '50', '40', '10', '9', '5', '4', '1']; // to go from high to low, because its a small unchanging data set I can just have this stored
 
-  private getNumeral = (num) => {
+  private getNumeral(this: RomanNumeralConverterDemo, num: number): string {
     return this.numerals[`${num}`] || '';
   }
 
-  public toNumerals(value: number): string {
+  public toNumerals(this: RomanNumeralConverterDemo, value: number): string {
     if (value < 1) {
       throw new Error('Input must be greater than 0');
     }
