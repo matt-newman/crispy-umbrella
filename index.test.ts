@@ -173,6 +173,18 @@ describe('CaesarCipherDemo', () => {
       expect(result).toMatch(expected);
     });
 
+    it('should return CMXCIX for 999', () => {
+      // Given
+      const value: number = 999;
+
+      // When
+      const result = numerals.toNumerals(value);
+      const expected = 'CMXCIX';
+
+      // Then
+      expect(result).toMatch(expected);
+    });
+
     xit('should raise an error when given value is greater than 999', () => {
       // Given
       const value: number = 1000;
