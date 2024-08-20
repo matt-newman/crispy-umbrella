@@ -37,21 +37,12 @@ export class RomanNumeralConverterDemo implements RomanNumeralConverter {
       return match;
     }
 
-    const numberBelowStartingValue = parseInt(this.numbersOrderedHighToLow.find(number => value > parseInt(number, 10)) || '', 10); // succinct version
-    const numeralBelowStartingValue = this.getNumeral(numberBelowStartingValue);
+    const highestNumberBelow = parseInt(this.numbersOrderedHighToLow.find(number => value > parseInt(number, 10)) || '', 10); // succinct version
+    const highestNumeralBelow = this.getNumeral(highestNumberBelow);
 
-    const remainingValue = value - numberBelowStartingValue;
+    const remainingValue = value - highestNumberBelow;
+    const remaningNumerals = this.toNumerals(remainingValue); // recusrion
 
-    const otherNumerals = this.toNumerals(remainingValue); // recusrion
-
-    // console.log({value, numberBelow, remainder, numeralBelow, otherNumerals});
-
-    const output = numeralBelowStartingValue + otherNumerals;
-
-    return output;
+    return highestNumeralBelow + remaningNumerals; // string concat, if no value then concats empty string;
   }
-
 }
-
-
-
