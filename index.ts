@@ -35,30 +35,26 @@ export interface RomanNumeralConverter {
         return match;
       }
   
-      // todo: for values larger than N check
-      // find where number goes into map
-      // is next value - N || is more
+      const numbersOrderedHighToLow = Object.keys(this.numerals).sort((a,b) => parseInt(b) - parseInt(a)); // to go from high to low
   
-      const numbers = Object.keys(this.numerals).sort((a,b) => parseInt(b) - parseInt(a));
-  
-      const numberBelow = numbers.find(number => {
+      const numberBelowStartingValue = numbersOrderedHighToLow.find(number => {
         if ( value > parseInt(number, 10) ) {
           return true;
         }
         return false;
       })
 
-      let numeralBelow = this.getNumeral(numberBelow);
+      let numeralBelowStartingValue = this.getNumeral(numberBelowStartingValue);
 
-      const remainder = value - parseInt((numberBelow || ''), 10);
+      const remainingValue = value - parseInt((numberBelowStartingValue || ''), 10);
 
-      const otherNumerals = this.toNumerals(remainder);
+      const otherNumerals = this.toNumerals(remainingValue); // recusrion
       
       // console.log({value, numberBelow, remainder, numeralBelow, otherNumerals});
   
-      let builtNumeral = numeralBelow + otherNumerals;  
+      const output = numeralBelowStartingValue + otherNumerals;
   
-      return builtNumeral;
+      return output;
     }
   
   }
