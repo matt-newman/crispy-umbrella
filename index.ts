@@ -20,8 +20,10 @@ export interface RomanNumeralConverter {
       1000: "M",
     }
 
+    private numbersOrderedHighToLow = ['1000', '900', '500', '400', '100', '90', '50', '40', '10', '9', '5', '4', '1']; // to go from high to low, because its a small unchanging data set I can just have this stored
+
     private getNumeral = (num) => {
-      return this.numerals[`${num}`];
+      return this.numerals[`${num}`] || '';
     }
   
     public toNumerals(value: number): string {
@@ -33,20 +35,12 @@ export interface RomanNumeralConverter {
   
       if ( match ) {
         return match;
-      }
+      }      
   
-      const numbersOrderedHighToLow = Object.keys(this.numerals).sort((a,b) => parseInt(b) - parseInt(a)); // to go from high to low
-  
-      const numberBelowStartingValue = numbersOrderedHighToLow.find(number => {
-        if ( value > parseInt(number, 10) ) {
-          return true;
-        }
-        return false;
-      })
+      const numberBelowStartingValue = parseInt(this.numbersOrderedHighToLow.find(number => value > parseInt(number, 10)) || '', 10); // succinct version
+      const numeralBelowStartingValue = this.getNumeral(numberBelowStartingValue);
 
-      let numeralBelowStartingValue = this.getNumeral(numberBelowStartingValue);
-
-      const remainingValue = value - parseInt((numberBelowStartingValue || ''), 10);
+      const remainingValue = value - numberBelowStartingValue;
 
       const otherNumerals = this.toNumerals(remainingValue); // recusrion
       
